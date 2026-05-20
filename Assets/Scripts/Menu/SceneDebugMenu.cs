@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class DebugSceneMenu : MonoBehaviour
 {
     [Header("Menu Settings")]
-    public KeyCode toggleKey = KeyCode.F1;
+    public KeyCode toggleKey = KeyCode.F2;
     public bool showMenu = true;
 
     private Vector2 scrollPosition;

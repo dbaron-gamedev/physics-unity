@@ -17,9 +17,27 @@ public class TelemetryDebugMenu : MonoBehaviour
     private bool showMenu = true;
     private float deltaTime;
 
+    private CoyoteTime coyoteTime;
+
+    void Awake()
+    {
+        coyoteTime = FindAnyObjectByType<CoyoteTime>();
+    }
+
     void Start()
     {
         sessionStartTime = Time.time;
+
+    }
+
+    void OnEnable()
+    {
+        coyoteTime.onBallFellOnFloor.AddListener(HandleFall);
+    }
+
+    void OnDisable()
+    {
+        coyoteTime.onBallFellOnFloor.RemoveListener(HandleFall);
     }
 
     void Update()
@@ -76,5 +94,10 @@ public class TelemetryDebugMenu : MonoBehaviour
         sb.AppendLine($"Memory Usage: {(System.GC.GetTotalMemory(false) / 1024 / 1024)} MB");
 
         GUI.Label(new Rect(20, 40, 300, 220), sb.ToString());
+    }
+
+    void HandleFall()
+    {
+        Debug.Log("Ball fell (code listener)");
     }
 }
