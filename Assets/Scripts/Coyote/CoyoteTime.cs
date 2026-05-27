@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class CoyoteTime : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class CoyoteTime : MonoBehaviour
     private Vector3 startPosition;
 
     private bool isJumping;
+
+    [Header("Events")]
+    public UnityEvent onBallFellOnFloor;
 
     void Start()
     {
@@ -116,6 +120,9 @@ public class CoyoteTime : MonoBehaviour
         // =========================
         if (pos.y <= floorY)
         {
+            // Invoke Unity Event
+            onBallFellOnFloor?.Invoke();
+
             ResetBall();
             return;
         }
