@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SideScrollerCameraFollow : MonoBehaviour
+public class SmoothFollowCamera : MonoBehaviour
 {
     [Header("Target")]
     public Transform target;
