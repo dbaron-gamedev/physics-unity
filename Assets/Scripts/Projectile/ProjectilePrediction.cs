@@ -24,6 +24,7 @@ public class ProjectilePrediction : MonoBehaviour
     private void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
+        
     }
 
     private void Update()
@@ -56,6 +57,8 @@ public class ProjectilePrediction : MonoBehaviour
 
         // Build launch direction from angle
         var direction = Quaternion.Euler(-launchAngle, yaw, 0f) * Vector3.forward;
+        
+        _lineRenderer.material.SetFloat("_Angle", launchAngle);
 
         // Initial velocity
         var velocity = direction.normalized * launchForce;
