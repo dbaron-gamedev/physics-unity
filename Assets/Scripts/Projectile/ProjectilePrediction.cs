@@ -20,6 +20,8 @@ public class ProjectilePrediction : MonoBehaviour
     public float timeStep = 0.1f;
 
     private LineRenderer _lineRenderer;
+    
+    
 
     private void Awake()
     {
@@ -46,6 +48,8 @@ public class ProjectilePrediction : MonoBehaviour
         // Rotate launcher visually
         transform.rotation = Quaternion.Euler(-launchAngle, yaw, 0f);
     }
+    
+    
 
     private void DrawPrediction()
     {
@@ -55,8 +59,11 @@ public class ProjectilePrediction : MonoBehaviour
         var position = firePoint.position;
 
         // Build launch direction from angle
-        var direction = Quaternion.Euler(-launchAngle, yaw, 0f) * Vector3.forward;
-
+        var direction = Quaternion.Euler(-launchAngle, yaw, 0f) * Vector3.forward; 
+        
+        
+        var angleLerp = 0 + (launchAngle - 5f) * (1 - 0) / (85f - 5f);
+        _lineRenderer.material.SetFloat("_Angle", angleLerp);
         // Initial velocity
         var velocity = direction.normalized * launchForce;
 
@@ -71,4 +78,6 @@ public class ProjectilePrediction : MonoBehaviour
             position += velocity * timeStep;
         }
     }
+    
+    
 }
